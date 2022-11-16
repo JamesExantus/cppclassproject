@@ -1,0 +1,141 @@
+#include <iostream>
+#include <string>
+using namespace std;
+#include "TennisTeam.h"
+
+//copy constructors
+TennisTeam::TennisTeam(const TennisTeam& origObject) {
+    lastName = new string;
+    firstName = new string;
+    country = new string;
+    rank = new int;
+    points = new int;
+    *lastName = *(origObject.lastName);
+    *firstName =*(origObject.firstName);
+    *country =*(origObject.country);
+    *rank =*(origObject.rank);
+    *points =*(origObject.points); 
+}
+
+//destructor
+   TennisTeam::~TennisTeam()
+    {
+        cout <<" inside destructor \n";
+        delete [] TennisTeam;
+
+    }
+   
+//hold values from file. 
+TennisTeam::TennisTeam(int r, int p, string l, string f, string c){
+    rank = r;
+    points = p;
+    lastName = l;
+    firstName = f;
+    country = c;
+}
+
+//team instance
+TennisTeam::myTeam(string c, TennisTeam *aTeam){
+
+   int i;
+   int j;
+   int indexSmallest;
+   int temp;      // Temporary variable for swap
+
+   for (i = 0; i <  - 1; ++i) {
+
+      // Find index of smallest remaining element
+      indexSmallest = i;
+      for (j = i + 1; j < numbersSize; ++j) {
+
+         if ( numbers[j] < numbers[indexSmallest] ) {
+            indexSmallest = j;
+         }
+      }
+
+      // Swap numbers[i] and numbers[indexSmallest]
+      temp = numbers[i];
+      numbers[i] = numbers[indexSmallest];
+      numbers[indexSmallest] = temp;
+   }
+}
+}
+
+//overload operators
+bool TennisTeam::operator == (const string &rhs) const{
+    if (this->lastName == rhs)
+        return true;
+    else
+        return false;
+    
+}
+
+bool TennisTeam::operator >= (const string &rhs) const{
+    if (this->lastName >= rhs)
+        return true;
+    else
+        return false;
+    
+}
+
+void TennisTeam::display() const {
+
+    cout << "user entered team " << country << endl;
+    cout << " user entered player " << lastName << endl;
+}
+
+
+//Selection sort
+void SelectionSort(int numbers[], int numbersSize) {
+   int i;
+   int j;
+   int indexSmallest;
+   int temp;      // Temporary variable for swap
+
+   for (i = 0; i < numbersSize - 1; ++i) {
+
+      // Find index of smallest remaining element
+      indexSmallest = i;
+      for (j = i + 1; j < numbersSize; ++j) {
+
+         if ( numbers[j] < numbers[indexSmallest] ) {
+            indexSmallest = j;
+         }
+      }
+
+      // Swap numbers[i] and numbers[indexSmallest]
+      temp = numbers[i];
+      numbers[i] = numbers[indexSmallest];
+      numbers[indexSmallest] = temp;
+   }
+}
+
+
+/*
+//recursive binary search
+int FindMatch(vector<TennisTeam> last, string tarLastName, int lowVal, int highVal) {
+   int midVal;        // Midpoint of low and high values
+   int itemPos;       // Position where item found, -1 if not found
+   int rangeSize;     // Remaining range of values to search for match
+
+   rangeSize = (highVal - lowVal) + 1;
+   midVal = (highVal + lowVal) / 2;
+
+   if (last.at(midVal) == tarLastName) {   // Base case 1: item found at midVal position
+      itemPos = midVal;
+   }
+   else if (rangeSize == 1) {       // Base case 2: match not found
+      itemPos = -1;
+   }
+   else {  // Recursive case: search lower or upper half
+      if (last.at(midVal) >= tarLastName) { // Search lower half, recursive call
+         itemPos = FindMatch(last, tarLastName, lowVal, midVal);
+      }
+      else { // Search upper half, recursive call
+         itemPos = FindMatch(last, tarLastName, midVal + 1, highVal);
+      }
+   }
+
+   return itemPos;
+}
+*/

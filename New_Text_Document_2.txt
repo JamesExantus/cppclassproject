@@ -1,0 +1,63 @@
+// Danny Sollomoni, James Exantus
+#include<iostream>
+#include<vector>
+#include<fstream>
+#include<string>
+#include "TennisTeam.h"
+
+using namespace std;
+
+
+//dynamically allocated array of tennis players
+int numPlayers;
+TennisTeam *players[] = nullptr;
+players = new TennisTeam[numPlayers];
+
+int main()
+{
+    string firstName, lastName, country, bestName, search;
+    int rank, points;
+    int bestRank = 1000;
+    char again;
+    int matchPos;
+
+    //vec short for vector
+    vector<TennisTeam> vecInformation;
+
+    //read information from files
+    ifstream infile;
+    infile.open("womensSingles.txt");
+
+    //enter information from files into vector
+    while (infile >> rank >> lastName >> firstName >> country >> points) {
+        TennisTeam x(rank, points, lastName, firstName, country);
+        vecInformation.push_back(x);
+    }
+
+    // recieve user input
+    do {
+
+        // tar short for target
+    string tarLastName, tarCountry;
+    cout << "Enter a players last name: ";
+    cin >> tarLastName;
+    cout << endl;
+    cout << "Enter a countries acronym: ";
+    cin >> tarCountry;
+
+    TennisTeam.display()
+
+    //call 
+    matchPos = FindMatch(vecInformation, tarLastName, 0, vecInformation.size() - 1);
+    if (matchPos >= 0)
+        cout << tarLastName << " is found! ";
+    else
+        cout << tarLastName << " is NOT found!";
+
+    //ask the user if they want to do it again
+    cout << "\nDo you want to search for another player?  enter Y or N" << endl;
+    cin >> again;
+    } while(again == 'Y' || again == 'y');
+
+    return 0;
+}

@@ -1,0 +1,20 @@
+#ifndef TENNISTEAM_h
+#define TENNISTEAM_h
+
+class TennisTeam {
+    public:
+        TennisTeam();
+        ~TennisTeam();
+        TennisTeam (int, int, string, string, string);
+        TennisTeam(const TennisTeam* origObject);
+        myTeam(string, TennisTeam*);
+        bool operator==(const string &rhs) const;
+        bool operator>=(const string &rhs) const;
+        void display() const;
+        
+    private:
+        string lastName;
+        string firstName;
+        string country;
+        int rank, points;
+};
